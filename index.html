@@ -303,10 +303,29 @@
   .accessory-head{ display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:38px; }
   .accessory-head .section-head{ margin-bottom:0; }
   .category-note{ max-width:330px; color:var(--text-soft); font-size:0.9rem; padding-left:18px; border-left:2px solid var(--shuttle-orange); }
-  .accessory-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .accessory-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; }
   .accessory-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
   .accessory-card:hover{ transform:translateY(-4px); border-color:rgba(23,63,115,0.35); box-shadow:0 18px 40px -20px rgba(11,31,58,0.35); }
   .accessory-image{ width:100%; aspect-ratio:1/0.78; object-fit:contain; padding:12px; background:#FFFFFF; border-bottom:1px solid var(--line); }
+  .accessory-gallery{ position:relative; width:100%; aspect-ratio:1/0.78; overflow:hidden; background:#fff; border-bottom:1px solid var(--line); }
+  .accessory-gallery .accessory-image{
+    position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto;
+    object-fit:contain; padding:0; border:0; opacity:0;
+  }
+  .gallery-3 .accessory-image{ animation:gallery-three 12s ease-in-out infinite; }
+  .gallery-4 .accessory-image{ animation:gallery-four 16s ease-in-out infinite; }
+  .accessory-gallery .accessory-image:nth-child(1){ animation-delay:0s; }
+  .accessory-gallery .accessory-image:nth-child(2){ animation-delay:4s; }
+  .accessory-gallery .accessory-image:nth-child(3){ animation-delay:8s; }
+  .accessory-gallery .accessory-image:nth-child(4){ animation-delay:12s; }
+  @keyframes gallery-three{
+    0%,27%{ opacity:1; }
+    33%,100%{ opacity:0; }
+  }
+  @keyframes gallery-four{
+    0%,20%{ opacity:1; }
+    25%,100%{ opacity:0; }
+  }
   .accessory-body{ padding:22px; display:flex; flex:1; flex-direction:column; }
   .accessory-card h3{ font-size:1.18rem; color:var(--court-green-deep); }
   .accessory-card p{ margin-top:8px; color:var(--text-soft); font-size:0.88rem; }
@@ -454,7 +473,7 @@
   }
   .hero-slide{
     position:absolute; inset:0; z-index:0; opacity:0;
-    background-size:cover; background-position:center;
+    background-size:cover; background-position:center top;
     transform:scale(1.025);
   }
   .hero-slide:first-child{ background-image:url('assets/hero-kien-thanh-premium-1.png'); animation:hero-slide-one 12s ease-in-out infinite; }
@@ -484,25 +503,13 @@
 
   .accessory-head{ align-items:center; margin-bottom:44px; }
   .accessory-head .section-head{ max-width:760px; }
-  .slider-controls{ display:flex; gap:10px; }
-  .slider-btn{
-    width:50px; height:50px; border-radius:50%; border:1px solid var(--line);
-    background:#fff; color:var(--court-green-deep); font-size:1.35rem; cursor:pointer;
-    display:grid; place-items:center; box-shadow:0 12px 25px -18px rgba(11,31,58,.45);
-    transition:transform .18s ease,background .18s ease,color .18s ease;
-  }
-  .slider-btn:hover{ transform:translateY(-2px); background:var(--court-green-deep); color:#fff; }
-  .accessory-slider{ position:relative; }
   .accessory-grid{
-    display:flex; gap:26px; overflow-x:auto; padding:8px 2px 28px;
-    scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none;
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px;
+    padding:8px 2px 28px;
   }
-  .accessory-grid::-webkit-scrollbar{ display:none; }
-  .accessory-card{
-    position:relative; flex:0 0 calc((100% - 26px)/2); min-width:0;
-    scroll-snap-align:start; border-radius:22px;
-  }
+  .accessory-card{ position:relative; min-width:0; border-radius:22px; }
   .accessory-image{ aspect-ratio:4/3; padding:24px; }
+  .accessory-gallery{ aspect-ratio:4/3; }
   .accessory-body{ padding:28px 30px 30px; }
   .accessory-card h3{ font-size:1.52rem; }
   .accessory-card p{ font-size:1rem; line-height:1.65; }
@@ -517,28 +524,28 @@
     .spotlight{ grid-template-columns:1fr; gap:38px; }
     .spotlight-visual{ min-height:0; aspect-ratio:1/1; }
     .hero-copy{ padding:34px; }
-    .hero-slide{ background-position:64% center; }
+    .hero-slide{ background-position:64% top; }
   }
   @media (max-width:820px){
     .wrap{ padding-inline:22px; }
     .section-pad{ padding-block:76px; }
-    .accessory-head{ align-items:flex-end; flex-direction:row; }
-    .accessory-card{ flex-basis:86%; }
+    .accessory-head{ align-items:flex-start; }
+    .accessory-grid{ grid-template-columns:1fr; }
     .accessory-image{ padding:18px; }
   }
   @media (max-width:560px){
     .hero-copy{ padding:26px 22px; }
     .hero-sub{ font-size:1rem; }
-    .hero-slide{ background-position:70% center; }
+    .hero-slide{ background-position:70% top; }
     .hero-dots{ right:22px; bottom:18px; }
     .accessory-head{ align-items:flex-start; flex-direction:column; }
     .accessory-card{ flex-basis:92%; }
-    .slider-btn{ width:44px; height:44px; }
   }
   @media (prefers-reduced-motion:reduce){
     .hero-slide,.hero-dots span::after{ animation:none; }
     .hero-slide:first-child{ opacity:1; }
-    .accessory-grid{ scroll-behavior:auto; }
+    .accessory-gallery .accessory-image{ animation:none; opacity:0; }
+    .accessory-gallery .accessory-image:first-child{ opacity:1; }
   }
 </style>
 </head>
@@ -565,9 +572,9 @@
       <a href="#lien-he">Liên hệ</a>
     </nav>
     <div class="nav-cta">
-      <a class="nav-phone" href="tel:0900000000">
+      <a class="nav-phone" href="tel:0943989089">
         <span class="lbl">Hotline đặt mua</span>
-        <span class="num mono">090.000.0000</span>
+        <span class="num mono">0943.989.089</span>
       </a>
       <a class="btn btn-primary" href="#dat-mua">Đặt mua ngay</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">
@@ -680,31 +687,49 @@
           <h2>Phụ kiện tốt cho từng trận đấu</h2>
           <p>Đúng mẫu, đúng thương hiệu, dễ chọn và sẵn sàng ra sân.</p>
         </div>
-        <div class="slider-controls" aria-label="Điều khiển slide phụ kiện">
-          <button class="slider-btn" type="button" id="accessoryPrev" aria-label="Sản phẩm trước">←</button>
-          <button class="slider-btn" type="button" id="accessoryNext" aria-label="Sản phẩm tiếp theo">→</button>
-        </div>
       </div>
 
-      <div class="accessory-slider reveal">
-      <div class="accessory-grid" id="accessoryTrack" tabindex="0" aria-label="Slide sản phẩm phụ kiện">
+      <div class="accessory-grid reveal" aria-label="Danh sách bốn sản phẩm phụ kiện">
         <article class="accessory-card">
           <span class="discount-badge">GIẢM GIÁ</span>
-          <img class="accessory-image" src="assets/vot-cau-long.jpg" alt="Vợt cầu lông Yonex Arcsaber 1 màu Magenta tím hồng chính hãng" loading="lazy">
+          <div class="accessory-gallery gallery-3" aria-label="Các phiên bản vợt Yonex Arcsaber 1">
+            <img class="accessory-image" src="assets/arcsaber-1-clear.jpg" alt="Yonex Arcsaber 1 Clear màu xanh" loading="lazy">
+            <img class="accessory-image" src="assets/arcsaber-1-feel.jpg" alt="Yonex Arcsaber 1 Feel màu đỏ" loading="lazy">
+            <img class="accessory-image" src="assets/arcsaber-1-ability.jpg" alt="Yonex Arcsaber 1 Ability màu đen" loading="lazy">
+          </div>
           <div class="accessory-body">
-            <h3>Vợt chính hãng Yonex</h3>
-            <p>Màu Magenta tím hồng · 4U · hàng chính hãng.</p>
-            <div class="accessory-meta"><span>Kiểm soát · Cân bằng</span><a href="#dat-mua" data-pack="Vợt Yonex Arcsaber 1 Magenta chính hãng">Chọn vợt →</a></div>
+            <h3>Vợt Yonex Arcsaber 1 2026</h3>
+            <p>Ba phiên bản Clear, Feel và Ability · hàng chính hãng.</p>
+            <div class="accessory-meta"><span>Kiểm soát · Cân bằng</span><a href="#dat-mua" data-pack="Vợt Yonex Arcsaber 1 2026">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
 
         <article class="accessory-card">
           <span class="discount-badge">GIẢM GIÁ</span>
-          <img class="accessory-image" src="assets/quan-can.jpg" alt="Quấn cán vợt Daltom màu xanh chính hãng" loading="lazy">
+          <div class="accessory-gallery gallery-3" aria-label="Các màu vợt Yonex Astrox 10 2026">
+            <img class="accessory-image" src="assets/astrox-10-2026-navy.png" alt="Yonex Astrox 10 2026 màu xanh navy" loading="lazy">
+            <img class="accessory-image" src="assets/astrox-10-2026-white-pink.png" alt="Yonex Astrox 10 2026 màu trắng hồng" loading="lazy">
+            <img class="accessory-image" src="assets/astrox-10-2026-red.png" alt="Yonex Astrox 10 2026 màu đỏ" loading="lazy">
+          </div>
+          <div class="accessory-body">
+            <h3>Vợt Yonex Astrox 10 2026</h3>
+            <p>Ba màu đỏ, xanh navy và trắng/hồng · hàng chính hãng.</p>
+            <div class="accessory-meta"><span>Tấn công · Linh hoạt</span><a href="#dat-mua" data-pack="Vợt Yonex Astrox 10 2026">Tư vấn - đặt hàng</a></div>
+          </div>
+        </article>
+
+        <article class="accessory-card">
+          <span class="discount-badge">GIẢM GIÁ</span>
+          <div class="accessory-gallery gallery-4" aria-label="Hình ảnh chi tiết quấn cán Daltom">
+            <img class="accessory-image" src="assets/quan-can-daltom-1.png" alt="Bộ quấn cán Daltom nhiều màu" loading="lazy">
+            <img class="accessory-image" src="assets/quan-can-daltom-2.png" alt="Chi tiết chất liệu chống thấm của quấn cán Daltom" loading="lazy">
+            <img class="accessory-image" src="assets/quan-can-daltom-3.png" alt="Kích thước tiêu chuẩn của quấn cán Daltom" loading="lazy">
+            <img class="accessory-image" src="assets/quan-can-daltom-4.png" alt="Quấn cán Daltom được lắp trên cán vợt" loading="lazy">
+          </div>
           <div class="accessory-body">
             <h3>Quấn cán Daltom</h3>
             <p>Mềm, bám tay và hỗ trợ thấm hút mồ hôi.</p>
-            <div class="accessory-meta"><span>Nhiều màu lựa chọn</span><a href="#dat-mua" data-pack="Quấn cán Daltom">Chọn loại →</a></div>
+            <div class="accessory-meta"><span>Nhiều màu lựa chọn</span><a href="#dat-mua" data-pack="Quấn cán Daltom">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
 
@@ -714,10 +739,9 @@
           <div class="accessory-body">
             <h3>Quấn cốt</h3>
             <p>Tăng độ êm, giảm rung và tùy chỉnh độ to cán vợt.</p>
-            <div class="accessory-meta"><span>Êm tay · Nhẹ</span><a href="#dat-mua" data-pack="Quấn cốt Yonex AC381">Chọn loại →</a></div>
+            <div class="accessory-meta"><span>Êm tay · Nhẹ</span><a href="#dat-mua" data-pack="Quấn cốt Yonex AC381">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
-      </div>
       </div>
     </div>
   </section>
@@ -726,25 +750,25 @@
   <section class="section-pad wholesale" id="dat-mua">
     <div class="wrap wholesale-inner">
       <div class="reveal">
-        <div class="eyebrow" style="color:var(--shuttle-orange-dim);">Đặt mua cầu lông Kiên Thành</div>
-        <h2 class="display">Mua càng nhiều, giá càng tốt</h2>
-        <p>Từ dùng thử 1 ống đến đặt sỉ cho CLB, HV Badminton xử lý đơn trong ngày và hỗ trợ đổi hàng nếu lệch chất lượng trong 48 giờ.</p>
+        <div class="eyebrow" style="color:var(--shuttle-orange-dim);">Hỗ trợ mua hàng</div>
+        <h2 class="display">Đặt hàng - tư vấn</h2>
+        <p>Chọn cầu hoặc phụ kiện bạn quan tâm, để lại tên và số điện thoại. HV Badminton sẽ tư vấn mẫu, màu và số lượng phù hợp qua Zalo.</p>
         <div class="wholesale-points">
-          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dưới 5 ống: 270.000đ/ống</div>
-          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Từ 5 ống: 260.000đ/ống</div>
-          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Từ 10 ống: liên hệ để nhận báo giá</div>
+          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tư vấn tốc cầu 50 hoặc 51 theo nhu cầu chơi</div>
+          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hỗ trợ chọn dòng vợt, màu sắc và phụ kiện phù hợp</div>
+          <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Xác nhận giá và số lượng trực tiếp qua Zalo</div>
         </div>
       </div>
 
       <form class="quote-card reveal" id="quoteForm">
-        <h3 class="display" style="font-size:1rem;">Gửi đơn — nhận xác nhận trong 30 phút</h3>
+        <h3 class="display" style="font-size:1rem;">Gửi yêu cầu - nhận tư vấn qua Zalo</h3>
         <div class="field">
           <label for="qName">Họ tên</label>
           <input id="qName" name="Họ tên" type="text" placeholder="Nguyễn Văn A" required>
         </div>
         <div class="field">
           <label for="qPhone">Số điện thoại</label>
-          <input id="qPhone" name="Số điện thoại" type="tel" placeholder="090 000 0000" required>
+          <input id="qPhone" name="Số điện thoại" type="tel" placeholder="0943 989 089" required>
         </div>
         <div class="field">
           <label for="qQty">Sản phẩm / gói muốn mua</label>
@@ -752,20 +776,17 @@
             <option>Dưới 5 ống — 270.000đ/ống</option>
             <option selected>Từ 5 ống — 260.000đ/ống</option>
             <option>Từ 10 ống — Liên hệ</option>
-            <option>Vợt Yonex Arcsaber 1 Magenta chính hãng</option>
+            <option>Vợt Yonex Arcsaber 1 2026</option>
+            <option>Vợt Yonex Astrox 10 2026</option>
             <option>Quấn cán Daltom</option>
             <option>Quấn cốt Yonex AC381</option>
           </select>
         </div>
-        <div class="field">
-          <label for="qAddr">Địa chỉ nhận hàng</label>
-          <input id="qAddr" name="Địa chỉ" type="text" placeholder="Số nhà, đường, quận/huyện, tỉnh/thành">
-        </div>
         <button type="submit" class="btn btn-primary btn-block" id="quoteSubmit">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="margin-right:2px;"><path d="M4 5h16v11H9l-4 3v-3H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-          Đặt hàng qua Zalo
+          Tư vấn - đặt hàng qua Zalo
         </button>
-        <p class="quote-note" id="quoteNote">Bấm nút để mở Zalo của HV Badminton — nội dung đơn (tên, SĐT, gói, địa chỉ) sẽ được sao chép sẵn, bạn chỉ cần <b>dán &amp; gửi</b>.</p>
+        <p class="quote-note" id="quoteNote">Bấm nút để mở Zalo của HV Badminton — tên, số điện thoại và sản phẩm quan tâm sẽ được sao chép sẵn, bạn chỉ cần <b>dán &amp; gửi</b>.</p>
       </form>
     </div>
   </section>
@@ -805,16 +826,12 @@
     </div>
     <div class="footer-col">
       <h4>Liên hệ</h4>
-      <a href="tel:0900000000">Hotline / Zalo: 090.000.0000</a>
-      <a href="https://zalo.me/0900000000" target="_blank" rel="noopener">Chat Zalo đặt hàng</a>
-      <a href="mailto:kinhdoanh@hvbadminton.vn">kinhdoanh@hvbadminton.vn</a>
-      <a href="#">Cửa hàng: [Địa chỉ shop]</a>
-      <a href="#" style="pointer-events:none;">Giờ mở cửa: 08:00 – 20:00 hằng ngày</a>
+      <a href="tel:0943989089">Hotline / Zalo: 0943.989.089</a>
+      <a href="https://zalo.me/0943989089" target="_blank" rel="noopener">Chat Zalo đặt hàng</a>
     </div>
   </div>
   <div class="wrap footer-bottom">
-    <span>© <span id="year"></span> HV Badminton. Mẫu thiết kế demo — thay thông tin thật trước khi triển khai.</span>
-    <span>Thiết kế phong cách thể thao hiện đại</span>
+    <span>© <span id="year"></span> HV Badminton.</span>
   </div>
 </footer>
 
@@ -825,7 +842,7 @@
 <script>
   /* =========================================================================
      CẤU HÌNH ĐẶT HÀNG
-     Khi khách bấm "Đặt hàng qua Zalo", trang sẽ đồng thời:
+     Khi khách bấm "Tư vấn - đặt hàng qua Zalo", trang sẽ đồng thời:
        (1) Lưu 1 dòng vào Google Form của bạn  (nếu đã điền cấu hình bên dưới)
        (2) Mở chat Zalo + sao chép nội dung đơn để khách dán & gửi
 
@@ -833,23 +850,22 @@
      ZALO_PHONE: số Zalo thật của bạn (chỉ gồm chữ số).
 
      --- (2) GOOGLE FORM (tùy chọn — để trống nếu chưa dùng) ---
-     Cách lấy: tạo Google Form 4 câu hỏi (Họ tên, SĐT, Gói, Địa chỉ) →
+     Cách lấy: tạo Google Form 3 câu hỏi (Họ tên, SĐT, Sản phẩm / gói) →
      bấm dấu ⋮ (góc phải) → "Nhận link đã điền trước" (Get pre-filled link) →
-     điền đại 4 ô rồi bấm "Nhận liên kết". Link nhận được có dạng
+     điền đại 3 ô rồi bấm "Nhận liên kết". Link nhận được có dạng
        .../viewform?entry.111=abc&entry.222=def...
      • GOOGLE_FORM_ACTION = link đó nhưng ĐỔI "viewform?..." thành "formResponse"
        (bỏ hết phần sau dấu ?), ví dụ:
        https://docs.google.com/forms/d/e/XXXXX/formResponse
-     • Mỗi số entry.### ứng với 1 câu hỏi — điền vào đúng ô name/phone/pack/addr.
+     • Mỗi số entry.### ứng với 1 câu hỏi — điền vào đúng ô name/phone/pack.
   ========================================================================= */
-  var ZALO_PHONE = "0900000000";       // <-- ĐỔI thành số Zalo thật của bạn
+  var ZALO_PHONE = "0943989089";
 
   var GOOGLE_FORM_ACTION = "";         // <-- link .../formResponse (để trống = tắt Google Form)
   var GOOGLE_FORM_ENTRIES = {
     name:  "entry.0000000001",         // câu hỏi "Họ tên"
     phone: "entry.0000000002",         // câu hỏi "Số điện thoại"
-    pack:  "entry.0000000003",         // câu hỏi "Gói muốn mua"
-    addr:  "entry.0000000004"          // câu hỏi "Địa chỉ"
+    pack:  "entry.0000000003"          // câu hỏi "Sản phẩm / gói"
   };
 
   var toggle = document.getElementById('menuToggle');
@@ -871,45 +887,6 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  var accessoryTrack = document.getElementById('accessoryTrack');
-  var accessoryPrev = document.getElementById('accessoryPrev');
-  var accessoryNext = document.getElementById('accessoryNext');
-  var accessoryTimer;
-
-  function accessoryStep() {
-    var card = accessoryTrack && accessoryTrack.querySelector('.accessory-card');
-    if (!card) { return 0; }
-    return card.getBoundingClientRect().width + 26;
-  }
-
-  function moveAccessories(direction) {
-    if (!accessoryTrack) { return; }
-    var maxScroll = accessoryTrack.scrollWidth - accessoryTrack.clientWidth;
-    var next;
-    if (direction > 0) {
-      next = accessoryTrack.scrollLeft >= maxScroll - 8 ? 0 : Math.min(accessoryTrack.scrollLeft + accessoryStep(), maxScroll);
-    } else {
-      next = accessoryTrack.scrollLeft <= 8 ? maxScroll : Math.max(accessoryTrack.scrollLeft - accessoryStep(), 0);
-    }
-    accessoryTrack.scrollTo({ left: next, behavior: 'smooth' });
-  }
-
-  function startAccessorySlider() {
-    window.clearInterval(accessoryTimer);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
-    accessoryTimer = window.setInterval(function () { moveAccessories(1); }, 4800);
-  }
-
-  if (accessoryTrack && accessoryPrev && accessoryNext) {
-    accessoryPrev.addEventListener('click', function () { moveAccessories(-1); startAccessorySlider(); });
-    accessoryNext.addEventListener('click', function () { moveAccessories(1); startAccessorySlider(); });
-    accessoryTrack.addEventListener('mouseenter', function () { window.clearInterval(accessoryTimer); });
-    accessoryTrack.addEventListener('mouseleave', startAccessorySlider);
-    accessoryTrack.addEventListener('focusin', function () { window.clearInterval(accessoryTimer); });
-    accessoryTrack.addEventListener('focusout', startAccessorySlider);
-    startAccessorySlider();
-  }
 
   var qQty = document.getElementById('qQty');
   document.querySelectorAll('[data-pack]').forEach(function (card) {
@@ -934,17 +911,15 @@
     return {
       name:  document.getElementById('qName').value || '',
       phone: document.getElementById('qPhone').value || '',
-      pack:  document.getElementById('qQty').value || '',
-      addr:  document.getElementById('qAddr').value || ''
+      pack:  document.getElementById('qQty').value || ''
     };
   }
   function orderText() {
     var v = orderVals();
-    return 'YÊU CẦU ĐẶT HÀNG — HV BADMINTON\n'
+    return 'YÊU CẦU TƯ VẤN / ĐẶT HÀNG — HV BADMINTON\n'
       + '• Họ tên: ' + v.name + '\n'
       + '• SĐT: ' + v.phone + '\n'
-      + '• Sản phẩm / gói: ' + v.pack + '\n'
-      + '• Địa chỉ: ' + v.addr;
+      + '• Sản phẩm / gói: ' + v.pack;
   }
 
   // Lưu 1 dòng vào Google Form qua iframe ẩn (tránh lỗi CORS). Bỏ qua nếu chưa cấu hình.
@@ -958,7 +933,7 @@
     gf.style.display = 'none';
     Object.keys(GOOGLE_FORM_ENTRIES).forEach(function (k) {
       var entry = GOOGLE_FORM_ENTRIES[k];
-      if (!entry || entry.indexOf('entry.') !== 0 || /entry\.0+[1-4]?$/.test(entry)) { return; }
+      if (!entry || entry.indexOf('entry.') !== 0 || /entry\.0+[1-3]?$/.test(entry)) { return; }
       var inp = document.createElement('input');
       inp.type = 'hidden'; inp.name = entry; inp.value = v[k];
       gf.appendChild(inp);
