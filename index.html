@@ -329,6 +329,10 @@
   .accessory-body{ padding:22px; display:flex; flex:1; flex-direction:column; }
   .accessory-card h3{ font-size:1.18rem; color:var(--court-green-deep); }
   .accessory-card p{ margin-top:8px; color:var(--text-soft); font-size:0.88rem; }
+  .accessory-price{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; min-height:32px; margin-top:16px; }
+  .accessory-price .current{ color:var(--court-green-deep); font-family:ui-monospace,monospace; font-size:1.35rem; font-weight:900; }
+  .accessory-price .current small{ font-size:.72rem; font-weight:700; color:var(--text-soft); }
+  .accessory-price .old{ color:var(--text-soft); font-family:ui-monospace,monospace; font-size:.9rem; }
   .accessory-meta{ margin-top:auto; padding-top:22px; display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:0.77rem; }
   .accessory-meta span{ color:var(--shuttle-orange-dim); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; }
   .accessory-meta a{ color:var(--court-green); font-weight:800; text-decoration:none; }
@@ -533,6 +537,7 @@
     .accessory-grid{ grid-template-columns:1fr; }
     .accessory-image{ padding:18px; }
   }
+  .discount-badge.contact{ background:var(--court-green-deep); }
   @media (max-width:560px){
     .hero-copy{ padding:26px 22px; }
     .hero-sub{ font-size:1rem; }
@@ -691,7 +696,7 @@
 
       <div class="accessory-grid reveal" aria-label="Danh sách bốn sản phẩm phụ kiện">
         <article class="accessory-card">
-          <span class="discount-badge">GIẢM GIÁ</span>
+          <span class="discount-badge">GIẢM 11%</span>
           <div class="accessory-gallery gallery-3" aria-label="Các phiên bản vợt Yonex Arcsaber 1">
             <img class="accessory-image" src="assets/arcsaber-1-clear.jpg" alt="Yonex Arcsaber 1 Clear màu xanh" loading="lazy">
             <img class="accessory-image" src="assets/arcsaber-1-feel.jpg" alt="Yonex Arcsaber 1 Feel màu đỏ" loading="lazy">
@@ -700,12 +705,13 @@
           <div class="accessory-body">
             <h3>Vợt Yonex Arcsaber 1 2026</h3>
             <p>Ba phiên bản Clear, Feel và Ability · hàng chính hãng.</p>
-            <div class="accessory-meta"><span>Kiểm soát · Cân bằng</span><a href="#dat-mua" data-pack="Vợt Yonex Arcsaber 1 2026">Tư vấn - đặt hàng</a></div>
+            <div class="accessory-price"><del class="old">630.000đ</del><span class="current">560.000đ</span></div>
+            <div class="accessory-meta"><span>Kiểm soát · Cân bằng</span><a href="#dat-mua" data-pack="Vợt Yonex Arcsaber 1 2026 — 560.000đ">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
 
         <article class="accessory-card">
-          <span class="discount-badge">GIẢM GIÁ</span>
+          <span class="discount-badge contact">LIÊN HỆ</span>
           <div class="accessory-gallery gallery-3" aria-label="Các màu vợt Yonex Astrox 10 2026">
             <img class="accessory-image" src="assets/astrox-10-2026-navy.png" alt="Yonex Astrox 10 2026 màu xanh navy" loading="lazy">
             <img class="accessory-image" src="assets/astrox-10-2026-white-pink.png" alt="Yonex Astrox 10 2026 màu trắng hồng" loading="lazy">
@@ -714,12 +720,13 @@
           <div class="accessory-body">
             <h3>Vợt Yonex Astrox 10 2026</h3>
             <p>Ba màu đỏ, xanh navy và trắng/hồng · hàng chính hãng.</p>
-            <div class="accessory-meta"><span>Tấn công · Linh hoạt</span><a href="#dat-mua" data-pack="Vợt Yonex Astrox 10 2026">Tư vấn - đặt hàng</a></div>
+            <div class="accessory-price"><span class="current">Liên hệ</span></div>
+            <div class="accessory-meta"><span>Tấn công · Linh hoạt</span><a href="#dat-mua" data-pack="Vợt Yonex Astrox 10 2026 — Liên hệ">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
 
         <article class="accessory-card">
-          <span class="discount-badge">GIẢM GIÁ</span>
+          <span class="discount-badge">GIẢM 17%</span>
           <div class="accessory-gallery gallery-4" aria-label="Hình ảnh chi tiết quấn cán Daltom">
             <img class="accessory-image" src="assets/quan-can-daltom-1.png" alt="Bộ quấn cán Daltom nhiều màu" loading="lazy">
             <img class="accessory-image" src="assets/quan-can-daltom-2.png" alt="Chi tiết chất liệu chống thấm của quấn cán Daltom" loading="lazy">
@@ -729,17 +736,19 @@
           <div class="accessory-body">
             <h3>Quấn cán Daltom</h3>
             <p>Mềm, bám tay và hỗ trợ thấm hút mồ hôi.</p>
-            <div class="accessory-meta"><span>Nhiều màu lựa chọn</span><a href="#dat-mua" data-pack="Quấn cán Daltom">Tư vấn - đặt hàng</a></div>
+            <div class="accessory-price"><del class="old">115.000đ/10 cái</del><span class="current">95.000đ<small>/10 cái</small></span></div>
+            <div class="accessory-meta"><span>Nhiều màu lựa chọn</span><a href="#dat-mua" data-pack="Quấn cán Daltom — 95.000đ/10 cái">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
 
         <article class="accessory-card">
-          <span class="discount-badge">GIẢM GIÁ</span>
+          <span class="discount-badge">GIẢM 25%</span>
           <img class="accessory-image" src="assets/quan-cot.jpg" alt="Quấn cốt vợt cầu lông Yonex AC381 màu vàng, đen và đỏ" loading="lazy">
           <div class="accessory-body">
             <h3>Quấn cốt</h3>
             <p>Tăng độ êm, giảm rung và tùy chỉnh độ to cán vợt.</p>
-            <div class="accessory-meta"><span>Êm tay · Nhẹ</span><a href="#dat-mua" data-pack="Quấn cốt Yonex AC381">Tư vấn - đặt hàng</a></div>
+            <div class="accessory-price"><del class="old">20.000đ/cuộn</del><span class="current">15.000đ<small>/cuộn</small></span></div>
+            <div class="accessory-meta"><span>Êm tay · Nhẹ</span><a href="#dat-mua" data-pack="Quấn cốt — 15.000đ/cuộn">Tư vấn - đặt hàng</a></div>
           </div>
         </article>
       </div>
@@ -776,10 +785,10 @@
             <option>Dưới 5 ống — 270.000đ/ống</option>
             <option selected>Từ 5 ống — 260.000đ/ống</option>
             <option>Từ 10 ống — Liên hệ</option>
-            <option>Vợt Yonex Arcsaber 1 2026</option>
-            <option>Vợt Yonex Astrox 10 2026</option>
-            <option>Quấn cán Daltom</option>
-            <option>Quấn cốt Yonex AC381</option>
+            <option>Vợt Yonex Arcsaber 1 2026 — 560.000đ</option>
+            <option>Vợt Yonex Astrox 10 2026 — Liên hệ</option>
+            <option>Quấn cán Daltom — 95.000đ/10 cái</option>
+            <option>Quấn cốt — 15.000đ/cuộn</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary btn-block" id="quoteSubmit">
